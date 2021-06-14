@@ -3,7 +3,7 @@ mapboxgl.accessToken = MAPBOX_TOKEN;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v11',
-    center: [0,0],
+    center: [0,51.4934],
     zoom: 2
 });
 

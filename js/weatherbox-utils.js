@@ -10,7 +10,7 @@ function getForecast(latLng) {
             units: 'imperial'
         },
         success: function (data) {
-            domStuff(weatherData(data), data.city.name)
+            domStuff(weatherData(data), data.city)
             console.log(data);
         }
     })
@@ -25,8 +25,8 @@ $(document).ready(function(event){
             units: 'imperial'
         },
         success: function (data) {
-            domStuff(weatherData(data), data.city.name);
-
+            domStuff(weatherData(data), data.city);
+            console.log(data);
         }
     })
 })
@@ -54,7 +54,7 @@ function weatherData(data){
     var arr = [];
 
     for (let i = 0; i < data.list.length; i++){
-        if (i % 10 === 0){
+        if (i % 8 === 0){
             arr.push(data.list[i]);
         }
     }
