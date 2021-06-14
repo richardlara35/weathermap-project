@@ -7,21 +7,19 @@ var map = new mapboxgl.Map({
     zoom: 5
 });
 
-// call function to create method and give initial point
-let marker = setMarker([-95.3698, 29.7604]);
 
-// call addMapEvent AFTER the marker has been initially set
-clickMarker(marker);
+let marker;
 
-// creat new geocoder and assign to variable
+
+// clickMarker(marker);
+
+
 let geocoder = setGeocoder();
 
-// add geocoder to map
+mapEvent();
 addGeocoderToMap(geocoder);
-addGeocoderEvent(geocoder);
 
 
-// creates and returns new Geocoder (search box)
 function setGeocoder() {
     return new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -30,34 +28,38 @@ function setGeocoder() {
     })
 }
 
-// add geocoder to map
+
 function addGeocoderToMap(geocoder) {
     map.addControl(geocoder);
-}
 
-// add event listener to geocoder and set new marker location
-function addGeocoderEvent(geocoder) {
-    geocoder.on("result", function (event) {
-        marker.setLngLat(event.result.geometry.coordinates)
-        console.log(event.result.geometry.coordinates)
+    geocoder.on('result', function (event) {
+        setMarker(event.result.geometry.coordinates);
+
+        getForecast(event.result.geometry.coordinates);
+
     })
 }
+
 
 function setMarker(point) {
 
-    return new mapboxgl.Marker().setLngLat(point)
-        .addTo(map)
+
+    if (!marker) {
+        marker = new mapboxgl.Marker().setLngLat(point)
+            .addTo(map)
+    } else {
+        marker.setLngLat(point);
+    }
 }
 
-function clickMarker(marker) {
-    map.on('click', function (event) {
-        marker.setLngLat(event.lngLat)
-            .addTo(map);
-        console.log(marker.setLngLat(event.lngLat))
+function mapEvent(){
+    map.on('click', function (event){
+        setMarker(event.lngLat);
+
+        getForecast([event.lngLat.lng,event.lngLat.lat])
     })
 }
 
-// let coordinates = setGeocoder().event.result.geometry.coordinates;
-// console.log(coordinates);
+
 
 
