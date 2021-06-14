@@ -15,6 +15,7 @@ function getForecast(latLng) {
         }
     })
 }
+
 $(document).ready(function(event){
     $.ajax({
         url: "http://api.openweathermap.org/data/2.5/forecast",

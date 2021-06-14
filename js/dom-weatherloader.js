@@ -46,13 +46,18 @@ function futureForecast(data) {
         let icon = data[i].weather[0].icon;
         let wind = data[i].wind.speed;
         let date = new Date(data[i].dt * 1000);
-        console.log(date);
+        //
+        // let stringDate = JSON.stringify(date);
+        //
+        // let newStringDate = stringDate.slice(6,11);
+
+        let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
 
         $('#forecast-container').append(`
       <div class = "card card col-2 mx-4">
 <div class = "card-body">
-<p class = "card-text">Forecast for: ${date}<br>
+<p class = "card-text">Forecast for: ${days[i]}<br>
 ${description}
 <img src="http://openweathermap.org/img/w/${icon}.png"><br>
 High: ${high}°F<br>
