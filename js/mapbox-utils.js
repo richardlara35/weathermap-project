@@ -3,8 +3,8 @@ mapboxgl.accessToken = MAPBOX_TOKEN;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v11',
-    center: [-95.36786464142847, 29.75989741259255],
-    zoom: 5
+    center: [0,0],
+    zoom: 2
 });
 
 
@@ -36,6 +36,7 @@ function addGeocoderToMap(geocoder) {
         setMarker(event.result.geometry.coordinates);
 
         getForecast(event.result.geometry.coordinates);
+        currentData(event.result.geometry.coordinates);
 
     })
 }
@@ -56,7 +57,8 @@ function mapEvent(){
     map.on('click', function (event){
         setMarker(event.lngLat);
 
-        getForecast([event.lngLat.lng,event.lngLat.lat])
+        getForecast([event.lngLat.lng,event.lngLat.lat]);
+        currentData([event.lngLat.lng,event.lngLat.lat]);
     })
 }
 
