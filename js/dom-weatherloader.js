@@ -5,7 +5,6 @@ function domStuff(data, location) {
     $('#location').append(`<h3 class="text-white text-center">5 Day Weather Forecast For: ${location.name}, ${location.country}</h3>`);
 
 
-
     currentWeather(data);
     futureForecast(data);
 }
@@ -21,7 +20,7 @@ function currentWeather(data) {
 
 
     $('#forecast-container').append(`
-    <div class="card col-2 mx-4">
+    <div class="card col-md-2 col-sm-4 mx-4">
     <p class="card-text">
     <p class = "card-text">Currently: ${temp}°F<br>
     ${description}
@@ -55,7 +54,7 @@ function futureForecast(data) {
 
 
         $('#forecast-container').append(`
-      <div class = "card card col-2 mx-4">
+      <div class = "card card col-md-2 col-sm-4 mx-4">
 <div class = "card-body">
 <p class = "card-text">Forecast for: ${days[i]}<br>
 ${description}
